@@ -1,7 +1,6 @@
 import torch
 import pytorch_lightning as pl
 
-from ner_tokenizer_bio import NER_tokenizer_BIO
 from joint_bert import JointBert
 
 class BertForTokenClassification_pl(pl.LightningModule):
