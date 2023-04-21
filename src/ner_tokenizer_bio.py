@@ -1,7 +1,7 @@
 import numpy as np
 import itertools
 import torch
-from transformers import BertJapaneseTokenizer, BertPreTrainedModel, BertModel, BertConfig
+from transformers import BertJapaneseTokenizer
 
 class NER_tokenizer_BIO(BertJapaneseTokenizer):
 

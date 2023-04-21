@@ -1,5 +1,5 @@
 import torch
-from transformers import BertJapaneseTokenizer, BertPreTrainedModel, BertModel, BertConfig
+from transformers import BertPreTrainedModel, BertModel, BertConfig
 
 from module import IntentClassifier, SlotClassifier
 

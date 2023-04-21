@@ -1,31 +1,29 @@
 # How to setup
 #
-# You need NVidia driver 470. So run followings in host PC
+# You need NVidia driver 515. So run followings in host PC
 #    sudo apt-get purge '*nvidia*'
-#    sudo apt install nvidia-driver-470
+#    sudo apt install nvidia-driver-515
 #    sudo systemctl daemon-reload
 #    sudo systemctl restart docker
-#
-# And you need to build your own pytorch 19.01
-#     see how to : https://github.com/hamling-ling/PyTorchLocalBuild
+#    reboot
+#    sudo apt-get update
+#    sudo apt-get install -y nvidia-container-toolkit
 #
 # Then copy your pytorch whl in docker directory.
 # And build docker image
-# > docker build -f Dockerfile_tch \
+# > docker build -f Dockerfile.inference \
 #   --build-arg user=$(id -un) \
 #   --build-arg user_id="$(id -u)" \
 #   --build-arg user_grp="$(id -gn)" \
 #   --build-arg user_gid="$(id -g)" \
 #   --build-arg pass=1234 \
-#   -t nlu-iot .
+#   -t nlu-iot-infer .
 #
 # Run container
 # > docker run --rm -it nlu-iot
 #
 
-FROM nvcr.io/nvidia/cuda:11.4.1-cudnn8-runtime-ubuntu20.04
-
-ENV TORCHWHL="torch-1.9.0a0+gitunknown-cp38-cp38-linux_x86_64.whl"
+FROM nvcr.io/nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu20.04
 
 ENV TZ=Asia/Tokyo
 ENV DEBIAN_FRONTEND noninteractive
@@ -51,8 +49,7 @@ RUN apt-get update && \
         sudo \
         jupyter-notebook
 
-COPY ${TORCHWHL} /tmp/
-RUN pip install /tmp/${TORCHWHL}
+RUN pip3 install torch==2.0.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
 
 RUN pip install seaborn keras
 RUN pip install scikit-learn
