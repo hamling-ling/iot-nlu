@@ -8,16 +8,24 @@ Natural Japanese understanding experiment of IoT device control.
 
 ## Preparation
 
-1. Install NVidia Driver 470
+1. Install NVidia Driver 515
      ```
     sudo apt-get purge '*nvidia*'
-    sudo apt install nvidia-driver-470
+    sudo apt install nvidia-driver-515
     sudo systemctl daemon-reload
     sudo systemctl restart docker
     ```
-2. Follow this link to get Pytorch1.9
 
-   https://github.com/hamling-ling/PyTorchLocalBuild
+2. Clone this repository under ~/Github
+
+   If you clone anywhere else, you need to edit run.sh
+
+   ```
+   cd ~/
+   mkdir Github
+   cd Github
+   git clone https://github.com/hamling-ling/iot-nlu.git
+   ```
 
 ## Build container
    Execute following commands to build container.
@@ -31,6 +39,7 @@ Natural Japanese understanding experiment of IoT device control.
    --build-arg pass=1234 \
    -t nlu-iot .
    ```
+
 ## Run container
    ```
     cd iot-nlu/docker
