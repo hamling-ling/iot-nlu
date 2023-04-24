@@ -57,6 +57,9 @@ RUN pip install transformers==4.18.0 fugashi==1.1.0 ipadic==1.0.0  pytorch-light
 RUN pip install ipywidgets==7.7.1
 RUN pip install markupsafe==2.0.1
 RUN pip install jupyter-tensorboard
+RUN pip install onnx==1.13.1
+RUN pip install transformers[onnx]
+RUN pip install pip install onnxruntime onnxruntime-gpu
 
 RUN jupyter tensorboard enable --system
 RUN jupyter nbextension enable --py widgetsnbextension
