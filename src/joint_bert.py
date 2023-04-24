@@ -15,7 +15,6 @@ class JointBert(PreTrainedModel):
         self.slot_loss_coef    = 1.0
 
     def forward(self, input_ids, attention_mask, token_type_ids, intent_label = None, slot_labels = None):
-    #def forward(self, input_ids, attention_mask, token_type_ids, slot_labels = None):
         outputs = self.bert(input_ids, attention_mask=attention_mask,
                             token_type_ids=token_type_ids)
         # output[0]: sequence_output(last_hidden_state)
