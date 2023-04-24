@@ -1,11 +1,11 @@
 import torch
-from transformers import BertPreTrainedModel, BertModel, BertConfig
+from transformers import BertPreTrainedModel, BertModel, BertConfig, PreTrainedModel
 
 from module import IntentClassifier, SlotClassifier
 
-class JointBert(torch.nn.Module):
+class JointBert(PreTrainedModel):
     def __init__(self, model_name, num_intent_labels, num_slot_labels):
-        super().__init__()
+        super().__init__(BertConfig())
         self.num_intent_labels = num_intent_labels
         self.num_slot_labels   = num_slot_labels
         self.bert              = BertModel.from_pretrained(model_name)  # Load pretrained bert
