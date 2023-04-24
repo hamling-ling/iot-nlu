@@ -17,7 +17,7 @@
 #   --build-arg user_grp="$(id -gn)" \
 #   --build-arg user_gid="$(id -g)" \
 #   --build-arg pass=1234 \
-#   -t nlu-iot-infer .
+#   -t nlu-iot .
 #
 # Run container
 # > docker run --rm -it nlu-iot
