@@ -27,7 +27,8 @@ class JointBert(PreTrainedModel):
         intent_logits = self.intent_classifier(pooled_output)
         slot_logits   = self.slot_classifier(sequence_output)
 
-        total_loss = 0.0
+        total_loss = torch.tensor(0.0)
+
         # 1. Intent Softmax
         if intent_label is not None:
             if self.num_intent_labels == 1:
@@ -36,7 +37,7 @@ class JointBert(PreTrainedModel):
             else:
                 intent_loss_fct = torch.nn.CrossEntropyLoss()
                 intent_loss     = intent_loss_fct(intent_logits.view(-1, self.num_intent_labels), intent_label.view(-1))
-            total_loss += intent_loss
+            total_loss = total_loss + intent_loss
 
         # 2. Slot Softmax
         if slot_labels is not None:
@@ -49,7 +50,7 @@ class JointBert(PreTrainedModel):
                 slot_loss     = slot_loss_fct(active_logits, active_labels)
             else:
                 slot_loss = slot_loss_fct(slot_logits.view(-1, self.num_slot_labels), slot_labels.view(-1))
-            total_loss += self.slot_loss_coef * slot_loss
+            total_loss = total_loss + self.slot_loss_coef * slot_loss
 
         outputs = ((intent_logits, slot_logits),) + outputs[2:]  # add hidden states and attention if they are here
         outputs = (total_loss,) + outputs
