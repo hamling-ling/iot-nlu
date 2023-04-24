@@ -11,7 +11,7 @@
 #
 # Then copy your pytorch whl in docker directory.
 # And build docker image
-# > docker build -f Dockerfile.inference \
+# > docker build -f Dockerfile \
 #   --build-arg user=$(id -un) \
 #   --build-arg user_id="$(id -u)" \
 #   --build-arg user_grp="$(id -gn)" \
