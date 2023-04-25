@@ -11,13 +11,13 @@
 #
 # Then copy your pytorch whl in docker directory.
 # And build docker image
-# > docker build -f Dockerfile.inference \
+# > docker build -f Dockerfile \
 #   --build-arg user=$(id -un) \
 #   --build-arg user_id="$(id -u)" \
 #   --build-arg user_grp="$(id -gn)" \
 #   --build-arg user_gid="$(id -g)" \
 #   --build-arg pass=1234 \
-#   -t nlu-iot-infer .
+#   -t nlu-iot .
 #
 # Run container
 # > docker run --rm -it nlu-iot
@@ -59,7 +59,8 @@ RUN pip install markupsafe==2.0.1
 RUN pip install jupyter-tensorboard
 RUN pip install onnx==1.13.1
 RUN pip install transformers[onnx]
-RUN pip install pip install onnxruntime onnxruntime-gpu
+RUN pip install pip install onnxruntime-gpu
+RUN pip install optimum[onnxruntime]
 
 RUN jupyter tensorboard enable --system
 RUN jupyter nbextension enable --py widgetsnbextension
