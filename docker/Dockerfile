@@ -59,8 +59,9 @@ RUN pip install markupsafe==2.0.1
 RUN pip install jupyter-tensorboard
 RUN pip install onnx==1.13.1
 RUN pip install transformers[onnx]
-RUN pip install pip install onnxruntime-gpu
+RUN pip install pip install onnxruntime-gpu==1.12.1
 RUN pip install optimum[onnxruntime]
+RUN pip install onnxsim
 
 RUN jupyter tensorboard enable --system
 RUN jupyter nbextension enable --py widgetsnbextension
