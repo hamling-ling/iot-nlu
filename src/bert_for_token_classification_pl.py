@@ -17,14 +17,12 @@ class BertForTokenClassification_pl(pl.LightningModule):
         )
     
     def training_step(self, batch, batch_idx):
-        output = self.bert_tc(**batch)
-        loss = output[0]
+        loss, _, _ = self.bert_tc(**batch)
         self.log('train_loss', loss)
         return loss
     
     def validation_step(self, batch, batch_idx):
-        output = self.bert_tc(**batch)
-        val_loss = output[0]
+        val_loss, _, _ = self.bert_tc(**batch)
         self.log('val_loss', val_loss)
     
     def configure_optimizers(self):

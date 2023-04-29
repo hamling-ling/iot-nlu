@@ -11,19 +11,19 @@
 #
 # Then copy your pytorch whl in docker directory.
 # And build docker image
-# > docker build -f Dockerfile \
+# > docker build -f Dockerfile.trt \
 #   --build-arg user=$(id -un) \
 #   --build-arg user_id="$(id -u)" \
 #   --build-arg user_grp="$(id -gn)" \
 #   --build-arg user_gid="$(id -g)" \
 #   --build-arg pass=1234 \
-#   -t nlu-iot .
+#   -t nlu-iot-trt .
 #
 # Run container
-# > docker run --rm -it nlu-iot
+# > docker run --rm -it nlu-iot-trt
 #
 
-FROM nvcr.io/nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu20.04
+FROM nvcr.io/nvidia/tensorrt:22.08-py3
 
 ENV TZ=Asia/Tokyo
 ENV DEBIAN_FRONTEND noninteractive
@@ -38,30 +38,38 @@ LABEL maintainer="Nobuhiro Kuroiwa"
 
 RUN apt-get update && \
     apt-get install -y \
-    python3-pip
-
-RUN apt-get update && \
-    apt-get install -y \
+        python3-pip \
         curl \
         wget \
         zip \
         git \
-        sudo \
-        jupyter-notebook
+        jupyter-notebook && \
+    apt-get clean
 
-RUN pip3 install torch==2.0.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
+RUN pip install --upgrade pip
 
-RUN pip install seaborn keras
-RUN pip install scikit-learn
-RUN pip install transformers==4.18.0 fugashi==1.1.0 ipadic==1.0.0  pytorch-lightning==1.6.1
-RUN pip install ipywidgets==7.7.1
-RUN pip install markupsafe==2.0.1
-RUN pip install jupyter-tensorboard
-RUN pip install onnx==1.13.1
-RUN pip install transformers[onnx]
-RUN pip install pip install onnxruntime-gpu==1.12.1
-RUN pip install optimum[onnxruntime]
-RUN pip install onnxsim
+RUN pip install \
+        torch==2.0.0 \
+        torchvision torchaudio \
+        --index-url https://download.pytorch.org/whl/cu117
+
+RUN pip install \
+        seaborn \
+        keras \
+        scikit-learn \
+        transformers==4.18.0 \
+        fugashi==1.1.0 \
+        ipadic==1.0.0 \
+        pytorch-lightning==1.6.1 \
+        ipywidgets==7.7.1 \
+        markupsafe==2.0.1
+RUN pip install \
+        jupyter-tensorboard \
+        onnx==1.13.1 \
+        transformers[onnx] \
+        onnxruntime-gpu==1.14.1 \
+        optimum[onnxruntime]==1.8.2 \
+        onnxsim==0.4.24
 
 RUN jupyter tensorboard enable --system
 RUN jupyter nbextension enable --py widgetsnbextension
