@@ -36,12 +36,14 @@ Natural Japanese understanding experiment of IoT device control.
    Most of notebooks can run in a container derived from Dockerfile (we tag nlu-iot later). However only TensorRT specific notebook can run in a container built with Dockerfile.trt (we tag nlu-iot-trt later).
 
    Here is a table shows what script can run in which container.
-   |Notebook         |Dockerfile     |Description                                |
-   |-----------------|---------------|-------------------------------------------|
-   |finetune.ipynb   |Dockerfile     |Finetune Joint-BERT and save model as ckpt.|
-   |inference.ipynb  |Dockerfile     |Load ckpt and perform inference.           |
-   |conv2onnx.ipynb  |Dockerfile     |Convert ckpt to onnx.                      |
-   |conv2trt.ipynb   |Dockerfile.trt |Convert onnx to TRT                        |
+   |Notebook           |Dockerfile     |Description                                |
+   |-------------------|---------------|-------------------------------------------|
+   |finetune.ipynb     |Dockerfile     |Finetune Joint-BERT and save model as ckpt.|
+   |inference.ipynb    |Dockerfile     |Load ckpt and perform inference.           |
+   |quantize.ipynb     |Dockerfile     |Load ckpt and perform dynamic quantization |
+   |conv2onnx.ipynb    |Dockerfile     |Convert ckpt to onnx.                      |
+   |conv2trt.ipynb     |Dockerfile.trt |Convert onnx to TRT.                       |
+   |inference_trt.ipynb|Dockerfile.trt |Run TRT engine.                            |
 
 ## Build container
    
