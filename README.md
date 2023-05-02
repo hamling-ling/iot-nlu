@@ -1,6 +1,52 @@
 # iot-nlu
 Natural Japanese understanding experiment of IoT device control.
 
+## Demo
+   Here is a demonstration of Japanese intent classification and slot filling.
+
+### Demo1
+
+   Turn on the fan in kitchen.
+   ```
+   input> キッチンの換気扇をつけて
+   took 8.902999999999999 ms
+   Input   : キッチンの換気扇をつけて
+   Intent  : 1 (点灯したい)
+   Entities: [
+   {
+      "name": "キッチン",
+      "type_id": "3 (設置場所)"
+   },
+   {
+      "name": "換気扇",
+      "type_id": "4 (オンオフできる物)"
+   }
+   ```
+
+### Demo2:
+
+   Set 18 celsius degree to the airconditioner in living room.
+   ```
+   input > 居間のエアコンを18度に設定して
+   took 8.906 ms
+   Input   : 居間のエアコンを18度に設定して
+   Intent  : 6 (数値設定したい)
+   Entities: [
+   {
+      "name": "居間",
+      "type_id": "3 (設置場所)"
+   },
+   {
+      "name": "エアコン",
+      "type_id": "6 (温度計)"
+   },
+   {
+      "name": "18",
+      "type_id": "7 (温度)"
+   }
+   ]
+   ```
+
 ## Prerequisite
 
 * Linux (Ubuntu >= 20.04)
@@ -85,7 +131,6 @@ Natural Japanese understanding experiment of IoT device control.
     cd iot-nlu/docker
     ./run_trt.sh
    ```
-
 ## Connect to jupyter notebook
 
 1. Run jupyter notebook.
