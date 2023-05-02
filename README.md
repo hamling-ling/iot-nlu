@@ -39,7 +39,7 @@ Natural Japanese understanding experiment of IoT device control.
    },
    {
       "name": "エアコン",
-      "type_id": "6 (温度計)"
+      "type_id": "6 (温度調節できる物)"
    },
    {
       "name": "18",
@@ -132,7 +132,27 @@ Natural Japanese understanding experiment of IoT device control.
     cd iot-nlu/docker
     ./run_trt.sh
    ```
-## Connect to jupyter notebook
+
+# Run Demo Program
+
+   1. Download model files
+      - T.B.D.
+   2. Run demo script
+
+      To run PyTorch demo, run the iot-nlu container and ...
+      ```
+      cd iot-nlu/src
+      python3 demo.py
+      ```
+
+      And to run TensorRT demo, run the iot-nlu container and ...
+
+      ```
+      cd iot-nlu/src
+      python3 demo_trt.py
+      ```
+
+## Run notebooks
 
 1. Run jupyter notebook.
 
