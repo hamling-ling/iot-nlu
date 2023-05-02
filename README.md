@@ -21,6 +21,7 @@ Natural Japanese understanding experiment of IoT device control.
       "name": "換気扇",
       "type_id": "4 (オンオフできる物)"
    }
+   ]
    ```
 
 ### Demo2:
