@@ -13,4 +13,4 @@ INTENT_MEANINGS = ['なし', '点灯したい', '消灯したい', '数値が知
 
 # スロットの種類数 (COL=1, COLLTDEV=2, LOC=3, ONOFFDEV=4, OPENABLE=5, TEMPDEV=6, TEMPERTURE_NUM=7, THMDEV=8)
 NUM_ENTITY_TYPE = 8
-ENTITY_MEANINGS = ['色', '照明', '設置場所', 'オンオフできる物', '開閉する物', '温度計', '温度', '温度調節する物']
+ENTITY_MEANINGS = ['色', '照明', '設置場所', 'オンオフできる物', '開閉する物', '温度調節できる物', '温度', '温度計']
