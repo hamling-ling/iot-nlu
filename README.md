@@ -3,7 +3,7 @@
 The goal of this project is to enable seamless Japanese language processing for edge computing, allowing for efficient control of IoT devices.
 
 ## Demo
-   Here is a demonstration of intent classification and slot filling for Japanese language.
+   Here is a demonstration of intent classification and slot filling for Japanese language. Please refere [README-Jetson.md](README-Jetson.md "Jetson Setup Guide") to run on Jetson Orin Nano.
 
 ### Demo1
 
