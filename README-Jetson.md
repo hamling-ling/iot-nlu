@@ -8,7 +8,7 @@ This is an setup guide to run [iot-nlu](README.md "iot-nlu README") demo for Jet
 
 ## Install packages
 
-   Basically what we need is things in [iot-nlu](docker/Dockerf'''ile.trt "Dockerfile for TensorRT"). However I had to do little more to make it work in Jetson Orin Nano. So please follow instructions below.
+   Basically what we need is things in [Dockerfile.trt](docker/Dockerfile.trt "Dockerfile for TensorRT"). However I had to do little more to make it work in Jetson Orin Nano. So please follow instructions below.
 
 ### Install apt modules
    ```
