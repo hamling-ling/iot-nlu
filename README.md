@@ -1,5 +1,53 @@
 # iot-nlu
-Natural Japanese understanding experiment of IoT device control.
+
+The goal of this project is to enable seamless Japanese language processing for edge computing, allowing for efficient control of IoT devices.
+
+## Demo
+   Here is a demonstration of intent classification and slot filling for Japanese language.
+
+### Demo1
+
+   Turn on the fan in the kitchen.
+   ```
+   input> キッチンの換気扇をつけて
+   took 8.902999999999999 ms
+   Input   : キッチンの換気扇をつけて
+   Intent  : 1 (点灯したい)
+   Entities: [
+   {
+      "name": "キッチン",
+      "type_id": "3 (設置場所)"
+   },
+   {
+      "name": "換気扇",
+      "type_id": "4 (オンオフできる物)"
+   }
+   ]
+   ```
+
+### Demo2:
+
+   Set the air conditioner in the living room to 18 degrees Celsius.
+   ```
+   input > 居間のエアコンを18度に設定して
+   took 8.906 ms
+   Input   : 居間のエアコンを18度に設定して
+   Intent  : 6 (数値設定したい)
+   Entities: [
+   {
+      "name": "居間",
+      "type_id": "3 (設置場所)"
+   },
+   {
+      "name": "エアコン",
+      "type_id": "6 (温度調節できる物)"
+   },
+   {
+      "name": "18",
+      "type_id": "7 (温度)"
+   }
+   ]
+   ```
 
 ## Prerequisite
 
@@ -62,13 +110,13 @@ Natural Japanese understanding experiment of IoT device control.
    And following commans to build container for TensorRT specific notebooks.
    ```
    cd iot-nlu/docker
-   docker build -f ./Dockerfile \
+   docker build -f ./Dockerfile.trt \
    --build-arg user=$(id -un) \
    --build-arg user_id="$(id -u)" \
    --build-arg user_grp="$(id -gn)" \
    --build-arg user_gid="$(id -g)" \
    --build-arg pass=1234 \
-   -t nlu-iot .
+   -t nlu-iot-trt .
    ```
 
 ## Run container
@@ -86,7 +134,32 @@ Natural Japanese understanding experiment of IoT device control.
     ./run_trt.sh
    ```
 
-## Connect to jupyter notebook
+# Run Demo Program
+
+   1. Download model files
+
+   ```
+    cd iot-nlu
+    ./download.sh
+   ```
+   
+   2. Run demo script
+
+      To run PyTorch demo, run the iot-nlu container and ...
+      ```
+      cd iot-nlu/src
+      python3 demo.py
+      ```
+
+      And to run TensorRT demo, run the iot-nlu container and ...
+      Note that engine file downloaded by the download.sh is built for Jetson Orin Nano. So for other environment, please run conv2onnx.ipynb then conv2trt.ipynb to buid engine file for your own enviroment.
+
+      ```
+      cd iot-nlu/src
+      python3 demo_trt.py
+      ```
+
+## Run notebooks
 
 1. Run jupyter notebook.
 
