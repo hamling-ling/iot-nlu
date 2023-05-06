@@ -1,12 +1,13 @@
 # iot-nlu
-Natural Japanese understanding experiment of IoT device control.
+
+The goal of this project is to enable seamless Japanese language processing for edge computing, allowing for efficient control of IoT devices.
 
 ## Demo
-   Here is a demonstration of Japanese intent classification and slot filling.
+   Here is a demonstration of intent classification and slot filling for Japanese language.
 
 ### Demo1
 
-   Turn on the fan in kitchen.
+   Turn on the fan in the kitchen.
    ```
    input> キッチンの換気扇をつけて
    took 8.902999999999999 ms
@@ -26,7 +27,7 @@ Natural Japanese understanding experiment of IoT device control.
 
 ### Demo2:
 
-   Set 18 celsius degree to the airconditioner in living room.
+   Set the air conditioner in the living room to 18 degrees Celsius.
    ```
    input > 居間のエアコンを18度に設定して
    took 8.906 ms
@@ -109,13 +110,13 @@ Natural Japanese understanding experiment of IoT device control.
    And following commans to build container for TensorRT specific notebooks.
    ```
    cd iot-nlu/docker
-   docker build -f ./Dockerfile \
+   docker build -f ./Dockerfile.trt \
    --build-arg user=$(id -un) \
    --build-arg user_id="$(id -u)" \
    --build-arg user_grp="$(id -gn)" \
    --build-arg user_gid="$(id -g)" \
    --build-arg pass=1234 \
-   -t nlu-iot .
+   -t nlu-iot-trt .
    ```
 
 ## Run container
@@ -136,7 +137,12 @@ Natural Japanese understanding experiment of IoT device control.
 # Run Demo Program
 
    1. Download model files
-      - T.B.D.
+
+   ```
+    cd iot-nlu
+    ./download.sh
+   ```
+   
    2. Run demo script
 
       To run PyTorch demo, run the iot-nlu container and ...
@@ -146,6 +152,7 @@ Natural Japanese understanding experiment of IoT device control.
       ```
 
       And to run TensorRT demo, run the iot-nlu container and ...
+      Note that engine file downloaded by the download.sh is built for Jetson Orin Nano. So for other environment, please run conv2onnx.ipynb then conv2trt.ipynb to buid engine file for your own enviroment.
 
       ```
       cd iot-nlu/src
