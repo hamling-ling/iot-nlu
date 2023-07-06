@@ -2,9 +2,9 @@
 
 This is an setup guide to run [iot-nlu](README.md "iot-nlu README") demo for Jetson Orin Nano.
 
-## Setup JetPack 8.5.2
+## Setup JetPack 5.1.1
 
-   Follow NVIDIA's [official guide]( https://developer.nvidia.com/embedded/learn/get-started-jetson-orin-nano-devkit ) to install JetPack 8.5.2. The version must be exactly the same because of cuda compatibility. This project requires cuda 11.4.
+   Follow NVIDIA's [official guide]( https://developer.nvidia.com/embedded/learn/get-started-jetson-orin-nano-devkit ) to install JetPack 5.1.1. The version must be exactly the same because of cuda compatibility. This project requires cuda 11.4 and TensorRT 8.5.2.
 
 ## Install packages
 
